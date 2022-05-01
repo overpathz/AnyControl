@@ -2,6 +2,7 @@ package client;
 
 import configuration.Configuration;
 import javafx.application.Application;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
 public class FxControl extends Application {
 
     private static final Logger LOGGER = Logger.getLogger(FxControl.class.getSimpleName());
+    private 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -28,13 +30,16 @@ public class FxControl extends Application {
     }
 
     private void applySocketAction(Scene scene, Controller controller) {
-        scene.setOnMouseMoved(event -> extracted(event, "/cursor/", controller));
+        scene.setOnMouseMoved(event -> );
         scene.setOnMouseClicked(event -> extracted(event, "/tap/", controller));
     }
 
     private void extracted(MouseEvent event, String command, Controller controller) {
         double xCoefficient = Configuration.REMOTE_WIDTH / Configuration.STAGE_WIDTH;
         double yCoefficient = Configuration.REMOTE_HEIGHT / Configuration.STAGE_HEIGHT;
+
+        EventType<? extends MouseEvent> eventType = event.getEventType();
+        System.out.println(eventType);
 
         double layoutX = event.getX();
         double layoutY = event.getY();

@@ -1,9 +1,9 @@
-package configuration;
+package client.configuration;
 
 public interface Configuration {
 
     int PORT = 8199;
-    String IP = "192.168.1.106"; // PC device in a local network
+    String IP = "localhost"; // (localhost for fast debug) PC device in a local network
 
     double STAGE_WIDTH = 300;
     double STAGE_HEIGHT = 500;

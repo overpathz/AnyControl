@@ -18,8 +18,8 @@ public class SenderApp extends Application {
         Scene scene = new Scene(fxmlLoader.getRoot());
         Controller controller = fxmlLoader.getController();
         primaryStage.setScene(scene);
-        primaryStage.setWidth(Configuration.STAGE_WIDTH);
-        primaryStage.setHeight(Configuration.STAGE_HEIGHT);
+        primaryStage.setWidth(Configuration.getStageWidth());
+        primaryStage.setHeight(Configuration.getStageHeight());
         commandSender = new CommandSender(controller);
         applySocketAction(scene);
         primaryStage.show();

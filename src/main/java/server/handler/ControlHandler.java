@@ -46,7 +46,6 @@ public class ControlHandler {
 
     private void moveMouse(int x, int y) {
         robot.mouseMove(x, y);
-        PointerInfo pointerInfo = MouseInfo.getPointerInfo();
         System.out.println("Cursor command executed successfully");
     }
 

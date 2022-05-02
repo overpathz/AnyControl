@@ -1,4 +1,4 @@
-package client.configuration;
+package server.configuration;
 
 public final class Configuration {
 
@@ -6,14 +6,14 @@ public final class Configuration {
         throw new UnsupportedOperationException("invoking private constructor");
     }
 
-    private static int PORT = 8199;
+    public static int PORT = 8199;
 
-    private static String IP = "localhost";
-    private static double STAGE_WIDTH = 300;
-    private static double STAGE_HEIGHT = 500;
+    public static String IP = "localhost";
+    public static double STAGE_WIDTH = 300;
+    public static double STAGE_HEIGHT = 500;
 
-    private static double REMOTE_WIDTH = 1290;
-    private static double REMOTE_HEIGHT = 760;
+    public static double REMOTE_WIDTH = 1290;
+    public static double REMOTE_HEIGHT = 760;
 
     public static int getPORT() {
         return PORT;

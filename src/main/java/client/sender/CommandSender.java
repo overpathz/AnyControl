@@ -1,7 +1,7 @@
 package client.sender;
 
-import client.controller.Controller;
 import client.configuration.Configuration;
+import client.controller.Controller;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -10,16 +10,24 @@ import java.net.Socket;
 
 public class CommandSender {
 
-    private final Controller controller;
+    private Controller controller;
+
+    private String ip;
+    private int port;
+
+    public CommandSender() {
+        setReceiverData(Configuration.getIP(), Configuration.getPORT());
+    }
 
     public CommandSender(Controller controller) {
+        this();
         this.controller = controller;
     }
 
     public void sendCommand(MouseEvent event) {
         // getting coefficients that show the ratio between the client and server resolutions
-        double xCoefficient = Configuration.REMOTE_WIDTH / Configuration.STAGE_WIDTH;
-        double yCoefficient = Configuration.REMOTE_HEIGHT / Configuration.STAGE_HEIGHT;
+        double xCoefficient = Configuration.getRemoteWidth() / Configuration.getStageWidth();
+        double yCoefficient = Configuration.getRemoteHeight() / Configuration.getStageHeight();
 
         // layout scene coordinates
         double layoutX = event.getX();
@@ -32,9 +40,10 @@ public class CommandSender {
         String command = getCommandType(event);
 
         String msgToSend = command + x + "/" + y;
-        System.out.println(msgToSend);
-        controller.getCoordinates().setText("X: " + layoutX + " | Y: " + layoutY);
         sendData(msgToSend);
+
+        System.out.println(msgToSend);
+        if (controller != null) controller.getCoordinates().setText("X: " + layoutX + " | Y: " + layoutY);
     }
 
     private String getCommandType(MouseEvent event) {
@@ -45,12 +54,17 @@ public class CommandSender {
     }
 
     private void sendData(String data)  {
-        try(Socket socket = new Socket(Configuration.IP, Configuration.PORT);
+        try(Socket socket = new Socket(ip, port);
             OutputStream outputStream = socket.getOutputStream()) {
             outputStream.write(data.getBytes());
             outputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setReceiverData(String ip, int port) {
+        this.ip = ip;
+        this.port = port;
     }
 }

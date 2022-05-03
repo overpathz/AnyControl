@@ -21,3 +21,6 @@ this command, parses and performes it.
 - JavaFx (included in azul zulu jdk fx)
 - SceneBuilder (to build FXML structure) 
 - Sockets
+
+## Demo
+https://user-images.githubusercontent.com/72043323/166488147-41cbd774-f5f0-4f12-8622-660a7a61e909.mp4

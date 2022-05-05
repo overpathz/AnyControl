@@ -1,11 +1,18 @@
 package server.server;
 
-import server.handler.ControlHandler;
+import server.handler.CommandChooser;
 
 import java.io.InputStream;
 import java.net.Socket;
 
 public class ConnectionHandler {
+
+    private final CommandChooser commandChooser;
+
+    public ConnectionHandler() {
+        this.commandChooser = new CommandChooser();
+    }
+
     public void handle(Socket socket) {
         try(InputStream inputStream = socket.getInputStream()) {
 
@@ -16,7 +23,7 @@ public class ConnectionHandler {
 
             String controlRequest = sb.toString();
             System.out.println("Request: " + controlRequest);
-            new ControlHandler(controlRequest);
+            commandChooser.handle(controlRequest);
 
         } catch (Exception exception) {
             exception.printStackTrace();

@@ -2,6 +2,8 @@ package client.sender;
 
 import client.configuration.Configuration;
 import client.controller.Controller;
+import javafx.scene.Parent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -22,6 +24,12 @@ public class CommandSender {
     public CommandSender(Controller controller) {
         this();
         this.controller = controller;
+    }
+
+    public void sendCommand(KeyEvent event) {
+        String msgToSend = "/keyboard/" + event.getCharacter();
+        System.out.println(msgToSend);
+        sendData(msgToSend);
     }
 
     public void sendCommand(MouseEvent event) {

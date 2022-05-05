@@ -15,7 +15,7 @@ this command, parses and performes it.
 
 ## Thoughts/todo
 
-- keyboard events (gui scene with keyboard or straight events of the real keyboard)
+- keyboard events (gui scene with keyboard or straightforward events of the real keyboard)
 - scale command
 - retrieve system info command
 - get/send files command

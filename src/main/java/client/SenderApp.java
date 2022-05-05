@@ -28,5 +28,6 @@ public class SenderApp extends Application {
     private void applySocketAction(Scene scene) {
         scene.setOnMouseMoved(commandSender::sendCommand);
         scene.setOnMouseClicked(commandSender::sendCommand);
+        scene.setOnKeyTyped(commandSender::sendCommand);
     }
 }

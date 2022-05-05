@@ -1,9 +1,6 @@
 package server.handler;
 
-import server.command.CursorCommand;
-import server.command.GenericCommand;
-import server.command.SwipeCommand;
-import server.command.TapCommand;
+import server.command.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +13,7 @@ public class CommandChooser {
         availableCommands.add(new CursorCommand());
         availableCommands.add(new TapCommand());
         availableCommands.add(new SwipeCommand());
+        availableCommands.add(new KeyboardCommand());
     }
 
     public void handle(String request) {

@@ -13,7 +13,12 @@ clicks), keyboard events. Each event is sent to the server as
 a separate command through "own protocol". Other PC receives
 this command, parses and performes it.
 
+## Thoughts/todo
 
+- keyboard events (gui scene with keyboard or straight events of the real keyboard)
+- scale command
+- retrieve system info command
+- get/send files command
 
 ## Used technologies
 

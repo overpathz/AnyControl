@@ -1,34 +1,35 @@
 package server.command;
 
+import oshi.SystemInfo;
+
+import java.awt.*;
+
 public abstract class GenericCommand {
-    private final int x;
-    private final int y;
-    private final CommandType commandType;
 
-    public GenericCommand(int x, int y, CommandType commandType) {
-        this.x = x;
-        this.y = y;
-        this.commandType = commandType;
+    private Robot robot;
+    private final SystemInfo systemInfo;
+
+    protected GenericCommand(){
+        initRobot();
+        this.systemInfo = new SystemInfo();
     }
 
-    public int getX() {
-        return x;
+    private void initRobot() {
+        try {
+            this.robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
     }
 
-    public int getY() {
-        return y;
+    public abstract void performCommand(String request);
+    public abstract String getCmdName();
+
+    public Robot getRobot() {
+        return robot;
     }
 
-    public CommandType getCommandType() {
-        return commandType;
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "{" +
-                "x=" + x +
-                ", y=" + y +
-                ", commandType=" + commandType +
-                '}';
+    public SystemInfo getSystemInfo() {
+        return systemInfo;
     }
 }

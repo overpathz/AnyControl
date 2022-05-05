@@ -1,25 +1,28 @@
 package server.handler;
 
-import server.command.CommandType;
 import server.command.CursorCommand;
 import server.command.GenericCommand;
 import server.command.SwipeCommand;
 import server.command.TapCommand;
 
-public class ControlRequestParser {
+import java.util.ArrayList;
+import java.util.List;
 
-    public GenericCommand parse(String inputRequest) {
-        String[] split = inputRequest.split("/");
-        int x = Integer.parseInt(split[split.length - 2]);
-        int y = Integer.parseInt(split[split.length - 1]);
+public class CommandChooser {
 
-        if (inputRequest.contains("tap"))
-            return new TapCommand(x, y, CommandType.TAP);
-        else if (inputRequest.contains("cursor"))
-            return new CursorCommand(x, y, CommandType.CURSOR);
-        else if (inputRequest.contains("swipe"))
-            return new SwipeCommand(x, y, CommandType.SWIPE);
+    private static final List<GenericCommand> availableCommands = new ArrayList<>();
 
-        return null;
+    static {
+        availableCommands.add(new CursorCommand());
+        availableCommands.add(new TapCommand());
+        availableCommands.add(new SwipeCommand());
+    }
+
+    public void handle(String request) {
+        for (GenericCommand availableCommand : availableCommands) {
+            if (request.contains(availableCommand.getCmdName())) {
+                availableCommand.performCommand(request);
+            }
+        }
     }
 }
